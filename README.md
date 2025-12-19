@@ -105,7 +105,7 @@ Algumas constantes que devem ser mexidas são:
 - `threshold_multiplier` (linha 22)
 - O número mágico `1.5` (linha 167) (perdão por não usar uma constante)
 
-Além disso, todas as variáveis de tempo (`DEBOUNCE_INTERVAL_MS`, `SEND_INTERVAL_MS` e `GREEN_LED_BLINK_TIME_MS`). O `OVERSAMPLE_SIZE` pode ser mexido, mas devem ser feitas algumas alterações no código para isso.
+Além disso, todas as variáveis de tempo (`DEBOUNCE_INTERVAL_MS`, `SEND_INTERVAL_MS` e `GREEN_LED_BLINK_TIME_MS`) podem ser modificadas conforme o necessário. O `OVERSAMPLE_SIZE` pode ser mexido, mas devem ser feitas algumas alterações no código para isso.
 
 Dentro do `setup()`, o número mágico `3000` (perdão, novamente), é o tempo em milissegundos que a calibragem roda no setup. Se o projeto não estiver funcionando de modo algum, tente mudar para `0`.
 
