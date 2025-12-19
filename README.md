@@ -1,6 +1,6 @@
 # Contador de soro com Arduino
 
-## Lista de materiais mínimos
+## Lista de materiais
 
 - 1 x Push button
 - 2 x LEDs (preferencialmente, 1 amarelo e 1 verde)
@@ -40,7 +40,7 @@ O ESP possui somente 1 entrada analógica (A0), que é suficiente para o projeto
 
 ### [Vídeos do projeto em funcionamento](videos/)
 
-## Documentação do projeto
+## Documentação do projeto para modificações futuras
 
 ### Dependências
 
@@ -209,7 +209,7 @@ Por isso, mudar o `threshold_multiplier` pode ajudar, se ele for muito alto é m
 ```c
 void updateBaseline(long raw_value)
 ```
-Função responsável por calcular a média móvel exponencial, recomendo ler a página da [Wikipedia](https://en.wikipedia.org/wiki/Exponential_smoothing).
+Função responsável por calcular a média móvel exponencial, para modificar esta função, recomendo ler a página da [Wikipedia](https://en.wikipedia.org/wiki/Exponential_smoothing). Ou usar outra abordagem no lugar.
 
 Resumidamente, é uma função de normalização e suavização. Ela é usada no código como uma margem de tendência, que mostra como é o valor do LDR sem que uma gota esteja sendo lida. É possível usar somente os valores direto do sensor (*raw_value*) e o *threshold*, mas existem muitas variações que podem ocorrer por movimento do sensor, ruído, e alterações na luz do ambiente.
 
