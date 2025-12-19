@@ -11,7 +11,7 @@
 
 Como utilizamos um NodeMCU ESP8266 no lugar de uma placa Arduino, a saída do VCC é de 3.3v, invés de 5v.
 
-Em 3.3v, o LED amarelo precisou de 140Ω (120Ω + 10Ω) e o verde de 130Ω (120Ω + 10Ω). Esses valores não precisam ser exatos, mas caso esse seja o caso, o LED ficará mais fraco. 220Ω para os 2 LEDs funcionam bem em 5v.
+Em 3.3v, o LED amarelo precisou de 140Ω (120Ω + 10Ω + 10Ω) e o verde de 130Ω (120Ω + 10Ω). Esses valores não precisam ser exatos, mas caso esse seja o caso, o LED ficará mais fraco. 220Ω para os 2 LEDs funcionam bem em 5v.
 
 O laser utilizado no projeto (KY-008) já possui um resistor acoplado no IC. Não é necessário adicionar mais resistência para ligar no 5v.
 
@@ -165,7 +165,7 @@ bool detectDrop(void)
 ```
 A função começa lendo o `raw_value`, que é o valor retornado de `readSensorAmplified()`. Por algum motivo, além de apenas detectar quando a gota cai, ela imprime no Serial e calibra o detector. (Não sei por que eu fiz isso)
 
-O código tem uma variável que é *invertida* quando está em modo calibração, chamada `is_calibrating`.
+O código tem uma variável que é *invertida* na função `void handleButtonPress(void)` quando está em modo calibração, chamada `is_calibrating`.
 
 O trecho de código:
 
@@ -205,6 +205,8 @@ O trecho de código acima corresponde à contagem de gotas (se alguém for modif
 
 A variável `is_inside_drop` serve para tentar mitigar falsos positivos, sem usar um temporizador. Para detectar quando saiu da gota e atualizar o valor da variável, a diferença entre o valor lido (*raw_value*) e o valor do *MME* deve ser menor que o *threshold* multiplicado por um número arbitrário entre 0 e 1.
 Por isso, mudar o `threshold_multiplier` pode ajudar, se ele for muito alto é mais propício a que ocorram falsos positivos, e se for muito baixo, podem ocorrer falsos negativos.
+
+O funcionamento do código é simples, quando a diferença entre o valor do *MME* e o valor bruto (*raw_value*) for maior que o *threshold*, significa que uma gota está caindo. Graficamente, isso acontece quando a linha *Raw* fica entre a *Base* e o *Trigger*.
 
 ```c
 void updateBaseline(long raw_value)
