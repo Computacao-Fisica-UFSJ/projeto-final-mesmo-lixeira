@@ -3,8 +3,8 @@
 #include <WiFiClient.h>
 
 // Configuração da rede
-constexpr const char* WIFI_SSID = "Victor"; // É melhor usar um hotspot no celular, por causa do captive portal da universidade
-constexpr const char* WIFI_PASSWD = "victor04";
+constexpr const char* WIFI_SSID = "arduino"; // É melhor usar um hotspot no celular, por causa do captive portal da universidade
+constexpr const char* WIFI_PASSWD = "arduino123";
 constexpr const char* SERVER_URL = "http://192.168.3.126:5000/send"; // A porta e o /send precisam continuar, só mudar o IP
 
 // Definição dos pinos
@@ -166,8 +166,6 @@ void handleCalibration(void){
     // Define o novo threshold (não é o threshold do sensor, é da soma de oversample_size sensores, por isso é sempre alto)
     calibrated_threshold = (long)(calibration_max_noise * 1.5); // limiar = maior ruido encontrado * 1.4 (o 1.4 é só uma margem)
     if(calibrated_threshold < 100) calibrated_threshold = 100; // Se for menor que 100 a margem some, então é só para garantir que não vai ficar em 0
-    Serial.print(" [CALIB] NoiseMax:"); Serial.print(calibration_max_noise);
-    Serial.print(" NovoThreshold:"); Serial.println(calibrated_threshold);
   }
 }
 
